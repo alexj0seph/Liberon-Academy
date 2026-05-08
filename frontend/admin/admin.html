@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Liberon Academy</title>
+    <meta http-equiv="refresh" content="0; url=/admin/dashboard" />
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h2>Liberon Admin</h2>
+        <a href="#overview">Overview</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#topics">Topics</a>
+        <a href="#resources">Resources</a>
+        <button id="logoutBtn" class="danger-btn">Logout</button>
+      </aside>
+
+      <main class="admin-main">
+        <section id="overview" class="admin-card-grid">
+          <div class="dashboard-card">
+            <h3 id="subjectCount">0</h3>
+            <p>Subjects</p>
+          </div>
+          <div class="dashboard-card">
+            <h3 id="topicCount">0</h3>
+            <p>Topics</p>
+          </div>
+          <div class="dashboard-card">
+            <h3 id="resourceCount">0</h3>
+            <p>Resources</p>
+          </div>
+        </section>
+
+        <section id="subjects" class="panel">
+          <h2>Add Subject</h2>
+          <form id="subjectForm">
+            <input type="text" name="subject_name" placeholder="Subject name" required />
+            <input type="text" name="icon" placeholder="Icon (example: 📘)" />
+            <textarea name="description" placeholder="Description"></textarea>
+            <button type="submit">Save Subject</button>
+          </form>
+          <div id="subjectList" class="list-box"></div>
+        </section>
+
+        <section id="topics" class="panel">
+          <h2>Add Topic</h2>
+          <form id="topicForm" enctype="multipart/form-data">
+            <select name="subject_id" id="topicSubjectSelect" required></select>
+            <input type="text" name="topic_name" placeholder="Topic name" required />
+            <textarea name="description" placeholder="Topic description"></textarea>
+            <input type="url" name="youtube_link" placeholder="YouTube link" />
+            <input type="file" name="pdf_file" accept="application/pdf" />
+            <button type="submit">Save Topic</button>
+          </form>
+          <div id="topicList" class="list-box"></div>
+        </section>
+
+        <section id="resources" class="panel">
+          <h2>Upload Resource PDF</h2>
+          <form id="resourceForm" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Resource title" required />
+            <input type="text" name="category" placeholder="Category (PDF Notes, PYQ...)" />
+            <input type="file" name="pdf_path" accept="application/pdf" required />
+            <button type="submit">Upload Resource</button>
+          </form>
+          <div id="resourceList" class="list-box"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/admin/admin.js"></script>
+  </body>
+</html>

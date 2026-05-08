@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - Liberon Academy</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body class="admin-auth-body">
+    <div class="admin-auth-card">
+      <h1>Admin Login</h1>
+      <p>Secure access for Liberon Academy admin team.</p>
+      <form id="adminLoginForm">
+        <label for="email">Email</label>
+        <input id="email" type="email" required />
+
+        <label for="password">Password</label>
+        <input id="password" type="password" required />
+
+        <button type="submit">Login</button>
+      </form>
+      <p id="loginMessage" class="message"></p>
+    </div>
+    <script src="/admin/login.js"></script>
+  </body>
+</html>

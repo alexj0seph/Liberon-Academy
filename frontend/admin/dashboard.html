@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Liberon Academy</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body>
+    <div class="mobile-backdrop" id="mobileBackdrop"></div>
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">LA</div>
+          <div>
+            <strong>Liberon Academy</strong>
+            <span>Admin Console</span>
+          </div>
+        </div>
+        <nav class="sidebar-nav" aria-label="Admin navigation">
+          <a class="nav-link active" href="#overview"><span>⌘</span>Dashboard</a>
+          <a class="nav-link" href="#subjects"><span>◇</span>Subjects</a>
+          <a class="nav-link" href="#topics"><span>◎</span>Topics</a>
+          <a class="nav-link" href="#pdfs"><span>▣</span>PDFs</a>
+          <a class="nav-link" href="#lectures"><span>▶</span>Lectures</a>
+        </nav>
+        <div class="sidebar-footer">
+          <button id="logoutBtn" class="ghost-danger-btn"><span>↩</span>Logout</button>
+        </div>
+      </aside>
+
+      <main class="admin-main">
+        <header class="admin-topbar">
+          <div class="topbar-left">
+            <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open sidebar">☰</button>
+            <div>
+              <p class="eyebrow">Admin Dashboard</p>
+              <h1>Content Management</h1>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <div class="admin-search-shell">
+              <label class="search-box" for="adminSearch">
+                <span>⌕</span>
+                <input id="adminSearch" type="search" placeholder="Search subjects, topics, PDFs..." autocomplete="off" />
+              </label>
+              <div id="adminSearchDropdown" class="admin-search-dropdown"></div>
+            </div>
+            <button id="themeToggleBtn" class="icon-btn theme-btn" aria-label="Toggle color theme">☾</button>
+            <div class="admin-profile">
+              <div class="profile-avatar">A</div>
+              <div>
+                <strong>Admin</strong>
+                <span>Liberon Academy</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="hero-panel">
+          <div>
+            <p class="eyebrow">Welcome back</p>
+            <h2>Manage academy learning content with confidence.</h2>
+            <p>Keep subjects, topics, PDFs, and lectures organized in one polished workspace.</p>
+          </div>
+          <a class="hero-action" href="#subjects">Add content</a>
+        </section>
+
+        <section id="overview" class="admin-card-grid">
+          <div class="dashboard-card"><span class="card-icon">◇</span><p>Subjects</p><h3 id="subjectCount">0</h3></div>
+          <div class="dashboard-card"><span class="card-icon">◎</span><p>Topics</p><h3 id="topicCount">0</h3></div>
+          <div class="dashboard-card"><span class="card-icon">▣</span><p>PDFs</p><h3 id="pdfCount">0</h3></div>
+          <div class="dashboard-card"><span class="card-icon">▶</span><p>Lectures</p><h3 id="lectureCount">0</h3></div>
+        </section>
+
+        <section id="subjects" class="panel">
+          <div class="section-heading">
+            <div><p class="eyebrow">Library</p><h2>Subject Management</h2></div>
+            <span class="section-badge">Cards</span>
+          </div>
+          <form id="subjectForm" class="admin-form">
+            <div class="form-grid">
+              <label>Subject name<input type="text" name="subject_name" placeholder="Physics" required /></label>
+              <label>Icon<input type="text" name="icon" placeholder="📘" /></label>
+              <label>Color<input type="color" name="color" value="#1f45b5" /></label>
+              <label class="full-span">Description<textarea name="description" placeholder="Short description for this subject"></textarea></label>
+            </div>
+            <p class="form-message" id="subjectMessage"></p>
+            <button type="submit">Save Subject</button>
+          </form>
+          <div id="subjectList" class="list-box"></div>
+        </section>
+
+        <section id="topics" class="panel">
+          <div class="section-heading">
+            <div><p class="eyebrow">Curriculum</p><h2>Topic Management</h2></div>
+            <span class="section-badge">Table</span>
+          </div>
+          <form id="topicForm" class="admin-form" enctype="multipart/form-data">
+            <div class="form-grid">
+              <label>Subject<select name="subject_id" id="topicSubjectSelect" required></select></label>
+              <label>Topic name<input type="text" name="topic_name" placeholder="Motion in a straight line" required /></label>
+              <label>YouTube link<input type="url" name="youtube_link" placeholder="https://youtube.com/..." /></label>
+              <label>Order<input type="number" name="order_index" min="0" value="0" /></label>
+              <label class="full-span">Description<textarea name="description" placeholder="What students will learn"></textarea></label>
+            </div>
+            <p class="form-message" id="topicMessage"></p>
+            <button type="submit">Save Topic</button>
+          </form>
+          <div id="topicList" class="list-box"></div>
+        </section>
+
+        <section id="pdfs" class="panel">
+          <div class="section-heading">
+            <div><p class="eyebrow">Resources</p><h2>PDF Upload System</h2></div>
+            <span class="section-badge">Files</span>
+          </div>
+          <form id="pdfForm" class="admin-form" enctype="multipart/form-data">
+            <div class="form-grid">
+              <label>PDF title<input type="text" name="title" placeholder="JEE Main Formula Sheet" required /></label>
+              <label>Subject<select name="subject_id" id="pdfSubjectSelect" required></select></label>
+              <label>Topic<select name="topic_id" id="pdfTopicSelect"></select></label>
+              <label class="full-span">PDF file<input type="file" name="pdf_file" accept="application/pdf" required /></label>
+            </div>
+            <p class="form-message" id="pdfMessage"></p>
+            <button type="submit">Upload PDF</button>
+          </form>
+          <div id="pdfList" class="list-box"></div>
+        </section>
+
+        <section id="lectures" class="panel">
+          <div class="section-heading">
+            <div><p class="eyebrow">Video</p><h2>YouTube Lectures</h2></div>
+            <span class="section-badge">Media</span>
+          </div>
+          <form id="lectureForm" class="admin-form">
+            <div class="form-grid">
+              <label>Topic<select name="topic_id" id="lectureTopicSelect" required></select></label>
+              <label>Lecture title<input type="text" name="title" placeholder="Complete revision lecture" required /></label>
+              <label class="full-span">YouTube link<input type="url" name="youtube_url" placeholder="https://youtube.com/..." required /></label>
+            </div>
+            <p class="form-message" id="lectureMessage"></p>
+            <button type="submit">Add Lecture</button>
+          </form>
+          <div id="lectureList" class="list-box"></div>
+        </section>
+      </main>
+    </div>
+    <div id="toastRoot" class="toast-root"></div>
+    <script src="/admin/dashboard.js"></script>
+  </body>
+</html>

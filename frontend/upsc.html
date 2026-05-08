@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liberon Academy - UPSC Preparation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="./index.html" class="brand">
+          <img class="brand-logo" src="./assets/logo.jpeg" alt="Liberon Academy logo" />
+          <span>Liberon Academy</span>
+        </a>
+        <div class="search-box site-search-panel">
+          <input id="upscHeaderSearchInput" type="text" placeholder="Search topics, notes, subjects..." autocomplete="off" />
+          <div id="upscHeaderSearchDropdown" class="course-search-dropdown"></div>
+        </div>
+        <nav class="main-nav">
+          <a href="./index.html#home">Home</a>
+          <a href="./upsc.html">UPSC</a>
+          <a href="https://youtube.com/@liberonacademy?si=1M3FApvLAsnJNAch" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="upsc-page">
+      <section class="section upsc-hero">
+        <div class="container">
+          <h1>UPSC Preparation</h1>
+          <p>
+            Comprehensive study materials for all UPSC subjects. Select a
+            subject to begin your preparation.
+          </p>
+        </div>
+      </section>
+
+      <section class="upsc-subjects">
+        <div class="container">
+          <div class="search-panel card">
+            <input
+              id="globalSearchInput"
+              type="text"
+              placeholder="Search subjects, topics, PDFs..."
+              autocomplete="off"
+            />
+            <div id="courseSearchDropdown" class="course-search-dropdown"></div>
+          </div>
+
+          <div id="subjectsGrid" class="grid three-col subject-grid">
+            <!-- Subject cards rendered dynamically -->
+          </div>
+
+          <h2 class="topic-heading">Topics</h2>
+          <div id="topicsGrid" class="grid three-col subject-grid">
+            <!-- Topic cards rendered dynamically -->
+          </div>
+
+          <h2 class="topic-heading">YouTube Lectures</h2>
+          <div id="lecturesGrid" class="grid three-col subject-grid">
+            <!-- Lectures rendered dynamically -->
+          </div>
+
+          <h2 class="topic-heading">PDF Resources</h2>
+          <div id="resourcesGrid" class="grid three-col subject-grid">
+            <!-- Resource cards rendered dynamically -->
+          </div>
+
+          <section class="how-to card">
+            <h2>How to Use These Resources</h2>
+            <ol>
+              <li>Select a subject from the list above</li>
+              <li>Browse through organized topics</li>
+              <li>Download PDF notes or watch video lectures</li>
+              <li>Study at your own pace, completely free</li>
+            </ol>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="./js/upsc.js"></script>
+    <script src="./js/site-search.js"></script>
+  </body>
+</html>
