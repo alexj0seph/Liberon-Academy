@@ -31,7 +31,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.get("/admin-login", (req, res) => {
-  res.redirect("https://liberonacademy.live/admin-login");
+  res.redirect("https://liberonacademy.live");
 });
 
 app.get("/admin", (req, res) => {
