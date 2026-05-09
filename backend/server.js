@@ -30,6 +30,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+app.get("/admin-login", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/admin/admin-login.html"));
+});
+
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/admin/admin.html"));
 });
