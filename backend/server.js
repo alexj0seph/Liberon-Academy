@@ -18,6 +18,8 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const uploadsDir = path.join(__dirname, "uploads");
+const pdfUploadsDir = path.join(uploadsDir, "pdfs");
 
 app.use(
   cors({
@@ -27,7 +29,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+require("fs").mkdirSync(pdfUploadsDir, { recursive: true });
+console.log("[Uploads] Serving uploaded files from:", uploadsDir);
+app.use("/uploads", express.static(uploadsDir));
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.get("/admin-login", (req, res) => {

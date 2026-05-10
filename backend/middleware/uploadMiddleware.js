@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
 
-const pdfUploadDir = path.join(__dirname, "../uploads/pdfs");
+const pdfUploadDir = path.join(__dirname, "..", "uploads", "pdfs");
 fs.mkdirSync(pdfUploadDir, { recursive: true });
 
 const storage = multer.diskStorage({
