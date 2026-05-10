@@ -5,21 +5,47 @@ const pool = require("../config/db");
 const loginAdmin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log("[AUTH] Login attempt received:", {
+      email,
+      hasPassword: Boolean(password),
+      mysqlHostConfigured: Boolean(process.env.MYSQLHOST),
+      mysqlDatabaseConfigured: Boolean(process.env.MYSQLDATABASE),
+      jwtSecretConfigured: Boolean(process.env.JWT_SECRET)
+    });
 
     if (!email || !password) {
+      console.log("[AUTH] Login rejected: missing email or password.");
       return res.status(400).json({ message: "Email and password are required." });
     }
 
+    const connection = await pool.getConnection();
+    await connection.ping();
+    connection.release();
+    console.log("[AUTH] Database connection ping successful.");
+
+    const [tableRows] = await pool.query("SHOW TABLES LIKE 'admins'");
+    console.log("[AUTH] Admins table check:", { exists: tableRows.length > 0 });
+
     const [admins] = await pool.query("SELECT * FROM admins WHERE email = ?", [email]);
     const admin = admins[0];
+    console.log("[AUTH] Admin lookup complete:", { found: Boolean(admin), count: admins.length });
 
     if (!admin) {
+      console.log("[AUTH] Login rejected: admin not found.");
       return res.status(401).json({ message: "Invalid credentials." });
     }
 
     const passwordMatch = await bcrypt.compare(password, admin.password);
+    console.log("[AUTH] Password comparison complete:", { passwordMatch });
+
     if (!passwordMatch) {
+      console.log("[AUTH] Login rejected: password mismatch.");
       return res.status(401).json({ message: "Invalid credentials." });
+    }
+
+    if (!process.env.JWT_SECRET) {
+      console.log("[AUTH] Login failed: JWT_SECRET is missing.");
+      return res.status(500).json({ message: "JWT secret is not configured." });
     }
 
     const token = jwt.sign(
@@ -27,6 +53,7 @@ const loginAdmin = async (req, res, next) => {
       process.env.JWT_SECRET,
       { expiresIn: "8h" }
     );
+    console.log("[AUTH] Login successful:", { adminId: admin.id, email: admin.email });
 
     return res.json({
       message: "Login successful",
@@ -38,6 +65,7 @@ const loginAdmin = async (req, res, next) => {
       }
     });
   } catch (error) {
+    console.error("[AUTH] Login error:", error);
     next(error);
   }
 };
