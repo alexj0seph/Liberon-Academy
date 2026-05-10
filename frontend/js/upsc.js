@@ -1,4 +1,5 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://liberon-academy-production.up.railway.app/api";
+const FILE_BASE = "https://liberon-academy-production.up.railway.app";
 const YOUTUBE_URL = "https://youtube.com/@liberonacademy?si=1M3FApvLAsnJNAch";
 
 const subjectsGrid = document.getElementById("subjectsGrid");
@@ -35,6 +36,11 @@ const fetchJson = async (url) => {
   return response.json();
 };
 
+const toFileUrl = (filePath = "") => {
+  if (/^https?:\/\//i.test(filePath)) return filePath;
+  return `${FILE_BASE}${filePath}`;
+};
+
 const renderSubjects = (subjects) => {
   if (!subjects.length) {
     subjectsGrid.innerHTML = `<p class="empty-state">No subjects found.</p>`;
@@ -50,7 +56,7 @@ const renderSubjects = (subjects) => {
           <div class="subject-body">
             <h3>${sanitize(subject.subject_name)}</h3>
             <p>${sanitize(subject.description || "Description will be updated soon.")}</p>
-            <a href="#topicsGrid" class="text-link">Explore Now →</a>
+            <a href="/subject.html?id=${encodeURIComponent(subject.id)}" class="text-link">Explore Now →</a>
           </div>
         </article>
       `;
@@ -91,7 +97,7 @@ const renderTopics = (topics) => {
       const colorClass = subjectColorClasses[index % subjectColorClasses.length];
       const youtubeLink = topic.youtube_link || YOUTUBE_URL;
       const pdfButton = topic.pdf_file
-        ? `<a class="topic-action" href="http://localhost:5000${topic.pdf_file}" target="_blank" rel="noopener noreferrer">Open PDF</a>`
+        ? `<a class="topic-action" href="${sanitize(toFileUrl(topic.pdf_file))}" target="_blank" rel="noopener noreferrer">Open PDF</a>`
         : `<span class="soon">PDF Coming Soon</span>`;
 
       return `
@@ -113,16 +119,18 @@ const renderTopics = (topics) => {
 };
 
 const renderResources = (resources) => {
-  if (!resources.length) {
+  const uploadedResources = resources.filter((resource) => resource.file_path);
+
+  if (!uploadedResources.length) {
     resourcesGrid.innerHTML = `<p class="empty-state">No resources found.</p>`;
     return;
   }
 
-  resourcesGrid.innerHTML = resources
+  resourcesGrid.innerHTML = uploadedResources
     .map((resource, index) => {
       const colorClass = subjectColorClasses[index % subjectColorClasses.length];
       const pdfButton = resource.file_path
-        ? `<a class="topic-action" href="http://localhost:5000${resource.file_path}" target="_blank" rel="noopener noreferrer">Open PDF</a>`
+        ? `<a class="topic-action" href="${sanitize(toFileUrl(resource.file_path))}" target="_blank" rel="noopener noreferrer">Open PDF</a>`
         : `<span class="soon">PDF Coming Soon</span>`;
 
       return `

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subject Resources - Liberon Academy</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="/">
+          <img src="/assets/logo.png" alt="Liberon Academy" />
+          <span>Liberon Academy</span>
+        </a>
+        <nav class="main-nav">
+          <a href="/">Home</a>
+          <a href="/upsc.html">UPSC</a>
+          <a href="/admin-login">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="upsc-page">
+      <section class="section upsc-hero">
+        <div class="container">
+          <p><a class="text-link" href="/upsc.html">← Back to UPSC</a></p>
+          <h1 id="subjectTitle">Subject Resources</h1>
+          <p id="subjectDescription">Loading subject details...</p>
+        </div>
+      </section>
+
+      <section class="upsc-subjects">
+        <div class="container">
+          <h2 class="topic-heading">PDF Resources</h2>
+          <div id="subjectPdfsGrid" class="grid three-col subject-grid"></div>
+
+          <h2 class="topic-heading">Topics</h2>
+          <div id="subjectTopicsGrid" class="grid three-col subject-grid"></div>
+
+          <h2 class="topic-heading">YouTube Lectures</h2>
+          <div id="subjectLecturesGrid" class="grid three-col subject-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/subject.js"></script>
+  </body>
+</html>

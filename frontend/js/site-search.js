@@ -1,5 +1,5 @@
 (function () {
-const SITE_SEARCH_API_BASE = "http://localhost:5000/api";
+const SITE_SEARCH_API_BASE = "https://liberon-academy-production.up.railway.app/api";
 
 const homeSearchInput = document.getElementById("homeSearchInput");
 const homeSearchDropdown = document.getElementById("homeSearchDropdown");

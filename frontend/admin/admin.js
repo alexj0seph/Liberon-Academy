@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://liberon-academy-production.up.railway.app/api";
 const token = localStorage.getItem("adminToken");
 
 if (!token) {

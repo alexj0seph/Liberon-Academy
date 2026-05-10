@@ -17,6 +17,10 @@
       "destination": "/admin/admin-login.html"
     },
     {
+      "source": "/subject",
+      "destination": "/subject.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
