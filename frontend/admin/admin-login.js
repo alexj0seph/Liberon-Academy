@@ -24,7 +24,7 @@ loginForm.addEventListener("submit", async (event) => {
     }
 
     localStorage.setItem("adminToken", data.token);
-    window.location.href = "/admin";
+    window.location.href = "/admin/dashboard";
   } catch (error) {
     messageEl.textContent = "Cannot connect to server. Start backend first.";
   }
