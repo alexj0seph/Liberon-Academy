@@ -20,6 +20,9 @@ console.log("[DB] MySQL config loaded:", {
   port: dbConfig.port,
   usingRailwayVars: Boolean(process.env.MYSQLHOST && process.env.MYSQLUSER && process.env.MYSQLDATABASE)
 });
+console.log("[DB] MYSQLHOST:", process.env.MYSQLHOST);
+console.log("[DB] MYSQLUSER:", process.env.MYSQLUSER);
+console.log("[DB] MYSQLDATABASE:", process.env.MYSQLDATABASE);
 
 const pool = mysql.createPool({
   ...dbConfig
